@@ -1,0 +1,21 @@
+/*The styles specified in the .root structure applies to the whole document*/
+/*i.e. it's the same as * in HTML*/
+.root {
+    -fx-background-color: #2E8503;
+}
+
+.label {
+    -fx-text-fill: #FFFFFF ;
+}
+
+.button {
+    -fx-background-radius: 10;
+    -fx-background-color: #DF2E07;
+    -fx-text-fill: #0B4C81;
+}
+
+#button-blue {
+    -fx-background-radius: 2;
+    -fx-background-color: #0B4C81;
+    -fx-text-fill: aliceblue;
+}

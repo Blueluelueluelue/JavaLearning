@@ -23,8 +23,7 @@ public class NewDialog
         Label label = new Label();
         label.setText(message);
 
-        fileInput = new TextField();
-        fileInput.setPromptText("Name of new file");
+        fileInput = new TextField("Name of new file");
         fileInput.setMaxWidth(150);
 
         Button yesButton = new Button("Yes");
