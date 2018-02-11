@@ -11,11 +11,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Text;
 
 public class Main extends Application
 {
-    Stage window;
+    private Stage window;
     public static void main(String[] args) {
         launch(args);
     }
