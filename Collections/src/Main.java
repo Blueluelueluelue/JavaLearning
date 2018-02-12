@@ -38,11 +38,11 @@ public class Main
         students.add(new Student("Bob" , 3.511));
         printStudents(students);
 
-        System.out.println("SORTED BY NAME\n");
+        System.out.println("SORTED BY NAME");
         Collections.sort(students, new StudentNameComparator());
         printStudents(students);
 
-        System.out.println("SORTED BY GPA\n");
+        System.out.println("SORTED BY GPA");
         Collections.sort(students, new StudentGpaComparator());
         printStudents(students);
 

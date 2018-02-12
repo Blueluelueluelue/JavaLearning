@@ -10,8 +10,8 @@ public class Main
         //Create the student array list and populate it
         ArrayList<Student> studentList = new ArrayList<>();
         studentList.add(new Student("Tom", 3.2));
-        studentList.add(new Student("Sally", 2.5));
-        studentList.add(new Student("Bob", 1.8));
+        studentList.add(new Student("Sally", 2.556));
+        studentList.add(new Student("Bob", 1.82));
 
         //Create FileOutputStream and ObjectOutputStream objects so that I can serialize the contents of the studentList
         FileOutputStream fileOutput = new FileOutputStream(file);

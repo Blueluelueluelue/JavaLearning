@@ -23,7 +23,7 @@ public class Student
 
     @Override
     public String toString() {
-        return this.name + "\t" + this.gpa;
+        return String.format("%-7s\t%4.3f",this.name, this.gpa);
     }
 
 }

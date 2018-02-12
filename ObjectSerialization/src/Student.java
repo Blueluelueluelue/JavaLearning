@@ -30,7 +30,7 @@ public class Student implements Serializable
 
     @Override
     public String toString() {
-        return this.name + "\t\t" + this.gpa;
+        return String.format("%-7s\t%-4.3f", this.name, this.gpa);
     }
 
 }
