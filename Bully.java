@@ -15,6 +15,12 @@ class Process
 	public void print() {
 		System.out.printf("id : %d\nstatus: %d\npriority: %d\n\n",id, status, priority);
 	}
+	public void kill() {
+		this.status = 0;
+	}
+	public boolean isAlive() {
+		return status == 1 ? true : false;
+	}
 }
 
 class Bully
@@ -31,14 +37,6 @@ class Bully
 			}
 		}
 		return maxInd;
-	}
-
-	public static void killProcess(Process[] processList, int index) {
-		processList[index].status = 0;
-	}
-
-	public static boolean checkAlive(Process[] processList, int index) {
-		return processList[index].status == 1;
 	}
 
 	public static int election(Process[] processList, int electionCand) {
@@ -80,48 +78,46 @@ class Bully
 		for(int i = 0; i < processAmount; i++) {
 			processList[i].print();
 		}
-//		System.out.println("Coordinator is process no. " + (determineCoordinator(processList)+1));
 		coordinator = determineCoordinator(processList);
 		while(quit != 1) {
-		System.out.println("Want Election? 1/0");
-		choice = sc.nextInt();
-		switch(choice) {
-			case 1 :
-			System.out.println("Enter the process number you want for election\n");
-			electionCand = sc.nextInt() - 1;
-			if(coordinator == electionCand) {
-				System.out.printf("Process no. %d is already coordinator\n", electionCand+1);
-				continue;
-			}
-			if(checkAlive(processList, electionCand)) {
-				System.out.printf("Current coordinator process no. %d is killed and process no. %d will stand for election.\n", coordinator+1, electionCand + 1);
-				killProcess(processList, coordinator);
-				winner = election(processList, electionCand);
-				if(winner == electionCand) {
-					System.out.printf("Process no. %d won the election\n", electionCand+1);
-					coordinator = winner;
-					notify(processList, coordinator);
-				} else {
-					System.out.printf("Process no. %d lost the election and the winner is process no. %d\n", electionCand+1, winner+1);
-					coordinator = winner;
+			System.out.println("Want Election? 1/0");
+			choice = sc.nextInt();
+			switch(choice) {
+				case 1 :
+				System.out.println("Enter the process number you want for election\n");
+				electionCand = sc.nextInt() - 1;
+				if(coordinator == electionCand) {
+					System.out.printf("Process no. %d is already coordinator\n", electionCand+1);
+					continue;
 				}
-			} else {
-				System.out.println("Is already dead\n");
-			}
+				if(processList[electionCand].isAlive()) {
+					System.out.printf("Current coordinator process no. %d is killed and process no. %d will stand for election.\n", coordinator+1, electionCand + 1);
+					processList[coordinator].kill();
+					winner = election(processList, electionCand);
+					if(winner == electionCand) {
+						System.out.printf("Process no. %d won the election\n", electionCand+1);
+						coordinator = winner;
+						notify(processList, coordinator);
+					} else {
+						System.out.printf("Process no. %d lost the election and the winner is process no. %d\n", electionCand+1, winner+1);
+						coordinator = winner;
+					}
+				} else {
+					System.out.println("Is already dead\n");
+				}
 
-			System.out.println("Current Process List");
-			for(int i = 0; i < processList.length; i++) {
-				processList[i].print();
+				System.out.println("Current Process List");
+				for(int i = 0; i < processList.length; i++) {
+					processList[i].print();
+				}
+				break;
+				case 0:
+				System.out.println("Want to quit? 1/0");
+				quit = sc.nextInt();
+				break;
+				default:
+				break;
 			}
-			break;
-			case 0:
-			System.out.println("Want to quit? 1/0");
-			quit = sc.nextInt();
-			break;
-			default:
-			break;
 		}
-}
-
 	}
 }
